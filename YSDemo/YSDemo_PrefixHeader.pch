@@ -1,0 +1,47 @@
+//
+//  YSDemo_PrefixHeader.pch
+//  YSDemo
+//
+//  Created by huweiya on 16/8/25.
+//  Copyright © 2016年 5i5j. All rights reserved.
+//
+
+#ifndef YSDemo_PrefixHeader_pch
+#define YSDemo_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+/**
+ *  屏幕宽 和 高
+ */
+
+#define YSWidth [UIScreen mainScreen].bounds.size.width
+#define YSHeight [UIScreen mainScreen].bounds.size.height
+
+#import "UIViewExt.h"
+#import "Masonry.h"
+#import <IQKeyboardManager.h>
+
+
+
+#define AppkeyWindow [UIApplication sharedApplication].keyWindow
+
+
+#define randomColor [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0] //随机颜色
+
+
+
+#ifdef __OBJC__
+
+#ifdef DEBUG
+#define NSLog(fmt, ...) NSLog((@"||方法名：%s || [行数：%d] || " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+#define NSLog(...)
+#endif
+
+#endif
+
+
+
+#endif /* YSDemo_PrefixHeader_pch */
