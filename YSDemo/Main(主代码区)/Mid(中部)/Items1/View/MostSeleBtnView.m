@@ -127,7 +127,7 @@
         UIView *vi = self.viewArr[i]
         ;
         
-        vi.frame = CGRectMake(i * YSWidth, 0, YSWidth, self.mainScrollV.height);
+        vi.frame = CGRectMake(i * YSWidth, 0, YSWidth, self.mainScrollV.hu_height);
         
         
         [self.mainScrollV addSubview:self.viewArr[i]];
@@ -143,7 +143,7 @@
         
     }
     
-    self.mainScrollV.contentSize = CGSizeMake(YSWidth * self.titleArr.count, self.mainScrollV.height);
+    self.mainScrollV.contentSize = CGSizeMake(YSWidth * self.titleArr.count, self.mainScrollV.hu_height);
     
     _scrV.contentSize = CGSizeMake(totalW, 44);
     
@@ -157,6 +157,7 @@
 
 
 - (void)addBtn:(UIButton *)btn{
+    
     if ([self.delegate respondsToSelector:@selector(btnAction:)]) {
         [self.delegate btnAction:btn];
     }
@@ -201,21 +202,21 @@
         }
         
         
-        if (btn.left < YSWidth / 2) {
+        if (btn.hu_left < YSWidth / 2) {
             [weakS.scrV setContentOffset:CGPointMake(0, 0) animated:YES];
             
             return;
         }
         
-        if (btn.right > weakS.scrV.contentSize.width - YSWidth / 2) {
-            [weakS.scrV setContentOffset:CGPointMake(weakS.scrV.contentSize.width - weakS.scrV.width, 0) animated:YES];
+        if (btn.hu_right > weakS.scrV.contentSize.width - YSWidth / 2) {
+            [weakS.scrV setContentOffset:CGPointMake(weakS.scrV.contentSize.width - weakS.scrV.hu_width, 0) animated:YES];
             return;
         }
         
         
         
-        if (btn.left > YSWidth / 2) {
-            [weakS.scrV setContentOffset:CGPointMake(btn.left - YSWidth / 3, 0) animated:YES];
+        if (btn.hu_left > YSWidth / 2) {
+            [weakS.scrV setContentOffset:CGPointMake(btn.hu_left - YSWidth / 3, 0) animated:YES];
             
             return;
             
@@ -271,21 +272,21 @@
         }
         
         
-        if (btn.left < YSWidth / 2) {
+        if (btn.hu_left < YSWidth / 2) {
             [weakS.scrV setContentOffset:CGPointMake(0, 0) animated:YES];
             
             return;
         }
         
-        if (btn.right > weakS.scrV.contentSize.width - YSWidth / 2) {
-            [weakS.scrV setContentOffset:CGPointMake(weakS.scrV.contentSize.width - weakS.scrV.width, 0) animated:YES];
+        if (btn.hu_right > weakS.scrV.contentSize.width - YSWidth / 2) {
+            [weakS.scrV setContentOffset:CGPointMake(weakS.scrV.contentSize.width - weakS.scrV.hu_width, 0) animated:YES];
             return;
         }
         
         
         
-        if (btn.left > YSWidth / 2) {
-            [weakS.scrV setContentOffset:CGPointMake(btn.left - YSWidth / 3, 0) animated:YES];
+        if (btn.hu_left > YSWidth / 2) {
+            [weakS.scrV setContentOffset:CGPointMake(btn.hu_left - YSWidth / 3, 0) animated:YES];
             
             return;
             
@@ -307,7 +308,7 @@
 - (UIScrollView *)mainScrollV
 {
     if (!_mainScrollV) {
-        _mainScrollV = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.scrV.bottom, YSWidth, YSHeight - 64 - 49)];
+        _mainScrollV = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.scrV.hu_bottom, YSWidth, YSHeight - 64 - 49)];
         
         _mainScrollV.pagingEnabled = YES;
         
@@ -330,8 +331,6 @@
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"%f",scrollView.contentOffset.x);
-    
     
     [self.scrV setContentOffset:CGPointMake(self.scrV.contentOffset.x, 0) animated:YES];
 
@@ -342,11 +341,9 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-//    NSLog(@"%f",scrollView.contentOffset.x);
     
     NSInteger inte = scrollView.contentOffset.x / YSWidth;
     
-//    NSLog(@"%ld",inte);
     
     [self delaWithBtn:inte];
     

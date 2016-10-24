@@ -6,52 +6,93 @@
 //  Copyright © 2016年 5i5j. All rights reserved.
 //
 
+
+
 #import "OneViewController.h"
 #import "MostSeleBtnView.h"
-#import "FirstViewController.h"
+#import "TagSelViewController.h"
+#import "ProvinceModel.h"
+#import <MessageUI/MessageUI.h>
+#import "HUNumInputView.h"
 @interface OneViewController ()
-
-<UITableViewDelegate,UITableViewDataSource>
+<UITableViewDelegate,UITableViewDataSource,MostSelBtndelegate>
 
 @property (nonatomic, strong) MostSeleBtnView *mView;
 
+@property(nonatomic,strong)CALayer *myLayer;
+
+@property(nonatomic, strong) MFMailComposeViewController *composeVC;
 
 @end
 
 @implementation OneViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    [self.navigationController setNavigationBarHidden:YES];
+//    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 70, 70)];
+//    [self.view addSubview:btn];
+//    btn.backgroundColor = [UIColor yellowColor];
+//    [btn addTarget:self action:@selector(add) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UISearchBar
+//
+//    [self.view addSubview:[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 110, 110)]];
     
-    _mView = [[MostSeleBtnView alloc] initWithFrame:CGRectMake(0, 0, YSWidth, YSHeight - 64)];
-    
-    _mView.titleNormalFont = [UIFont systemFontOfSize:15];
-    
-    _mView.titleSelectedFont = [UIFont systemFontOfSize:18];
-    
-    _mView.titleNormalColor = [UIColor whiteColor];
-    
-    _mView.titleSelectedColor = [UIColor orangeColor];
-    
-    _mView.delegate = self;
-    
-    _mView.viewArr = [self viewArr];
-    
-    _mView.titleArr = [self titleArr];
-    
-    [self.view addSubview:_mView];
+    UITextField *textF = [[UITextField alloc] initWithFrame:CGRectMake(10, 220, 300, 50)];
+    textF.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:textF];
+    textF.inputView.backgroundColor = [UIColor redColor];
+    textF.inputView = [[HUNumInputView alloc] initIsRandom:NO mainView:textF];
+    [IQKeyboardManager sharedManager].enable = NO;
     
     
-//    [self.view addSubview:self.mainScrollV];
     
-//    [self setScrV:_mView.titleArr];
+    
 }
+
+
+
+- (void)add{
+    
+    
+    NSLog(@"%f",[UIApplication sharedApplication].backgroundTimeRemaining);
+    
+}
+
+
+- (void)btnAction:(UIButton *)btn
+{
+    if (btn.tag == 8888) {
+        
+        TagSelViewController *tagSe = [[TagSelViewController alloc] init];
+        
+        
+        [self presentViewController:tagSe animated:YES completion:nil];
+        
+        
+
+    }else{
+        
+        
+        
+    }
+    
+    
+}
+
+
+
+
+
+
 
 - (NSArray *)titleArr{
     return @[@"推荐",@"视频",@"热点",@"北京",@"社会",@"国际",@"头条号",@"图片",@"娱乐",@"正能量",@"健康",@"科技",@"天天向上",@"中国好声音"];
@@ -111,55 +152,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    TagSelViewController *oneCtrl = [[TagSelViewController alloc] init];
     
-    NSLog(@"haha");
-    
-    UIView *topHUD = [[UIView alloc] initWithFrame:CGRectMake(0, -64, YSWidth, 64)];
-    
-    [AppkeyWindow addSubview:topHUD];
-    
-    topHUD.backgroundColor = [UIColor colorWithRed:(arc4random() % 10) * 0.1 green:(arc4random() % 10) * 0.1 blue:(arc4random() % 10) * 0.1 alpha:1.0];
-    
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        topHUD.top += 64;
-
-    } completion:^(BOOL finished) {
-        
-        
-        
-        double delayInSeconds = 3.0;
-        
-        __weak typeof(self) weakSelf = self;
-        
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            
-            [weakSelf haha:topHUD];
-        
-        
-        });
-
-        
-        
-    }];
-    
-    
-    
+    [self.navigationController pushViewController:oneCtrl animated:YES];
 }
 
-- (void)haha:(UIView *)topHUD{
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        topHUD.top -= 64;
-        
-    } completion:^(BOOL finished) {
-        
-        [topHUD removeFromSuperview];
-    }];
-
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

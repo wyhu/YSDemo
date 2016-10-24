@@ -19,11 +19,11 @@
 #define YSWidth [UIScreen mainScreen].bounds.size.width
 #define YSHeight [UIScreen mainScreen].bounds.size.height
 
-#import "UIViewExt.h"
+#import "UIView+HUViewExt.h"
 #import "Masonry.h"
 #import <IQKeyboardManager.h>
-
-
+#import "MJExtension.h"
+#import "AFNetworking.h"
 
 #define AppkeyWindow [UIApplication sharedApplication].keyWindow
 
@@ -31,16 +31,24 @@
 #define randomColor [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0] //随机颜色
 
 
+#define LRViewBorderRadius(View, Radius, Width, Color)\\
+[View.layer setCornerRadius:(Radius)];\
+[View.layer setMasksToBounds:YES];\
+[View.layer setBorderWidth:(Width)];\
+[View.layer setBorderColor:[Color CGColor]]
 
-#ifdef __OBJC__
+
+
+
+
+
 
 #ifdef DEBUG
-#define NSLog(fmt, ...) NSLog((@"||方法名：%s || [行数：%d] || " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define NSLog(fmt, ...) NSLog((@"|方法名：%s|行数：%d|-----" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 #define NSLog(...)
 #endif
 
-#endif
 
 
 

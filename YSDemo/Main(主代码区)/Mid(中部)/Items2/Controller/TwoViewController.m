@@ -8,7 +8,6 @@
 
 #import "TwoViewController.h"
 #import "ThreeViewController.h"
-
 @interface TwoViewController ()
 @property (nonatomic, strong) UILabel *firstLabel;
 
@@ -21,40 +20,53 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
 
-    [self.view addSubview:self.firstLabel];
-    
+//    typedef NS_ENUM(NSInteger, UIReturnKeyType) {
+//        UIReturnKeyDefault,
+//        UIReturnKeyGo,
+//        UIReturnKeyGoogle,
+//        UIReturnKeyJoin,
+//        UIReturnKeyNext,
+//        UIReturnKeyRoute,
+//        UIReturnKeySearch,
+//        UIReturnKeySend,
+//        UIReturnKeyYahoo,
+//        UIReturnKeyDone,
+//        UIReturnKeyEmergencyCall,
+//        UIReturnKeyContinue NS_ENUM_AVAILABLE_IOS(9_0),
+//    };
 
     
-    [self.firstLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.mas_equalTo(100);
-        
-        make.left.mas_equalTo(10);
-        
-        make.width.mas_equalTo(YSWidth - 20);
-        
-//        make.height.mas_equalTo(40);
-        
-        
-    }];
+    UITextField *textF = [[UITextField alloc] initWithFrame:CGRectMake(0, 100, YSWidth, 44)];
+    
+    textF.backgroundColor = [UIColor yellowColor];
+    
+    textF.returnKeyType = UIReturnKeyGo;
     
     
-    NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithString:@"我是第一种方式，哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"];
+//    typedef NS_ENUM(NSInteger, UIKeyboardType) {
+//        UIKeyboardTypeDefault,                // Default type for the current input method.
+//        UIKeyboardTypeASCIICapable,           // Displays a keyboard which can enter ASCII characters
+//        UIKeyboardTypeNumbersAndPunctuation,  // Numbers and assorted punctuation.
+//        UIKeyboardTypeURL,                    // A type optimized for URL entry (shows . / .com prominently).
+//        UIKeyboardTypeNumberPad,              // A number pad with locale-appropriate digits (0-9, ۰-۹, ०-९, etc.). Suitable for PIN entry.
+//        UIKeyboardTypePhonePad,               // A phone pad (1-9, *, 0, #, with letters under the numbers).
+//        UIKeyboardTypeNamePhonePad,           // A type optimized for entering a person's name or phone number.
+//        UIKeyboardTypeEmailAddress,           // A type optimized for multiple email address entry (shows space @ . prominently).
+//        UIKeyboardTypeDecimalPad NS_ENUM_AVAILABLE_IOS(4_1),   // A number pad with a decimal point.
+//        UIKeyboardTypeTwitter NS_ENUM_AVAILABLE_IOS(5_0),      // A type optimized for twitter text entry (easy access to @ #)
+//        UIKeyboardTypeWebSearch NS_ENUM_AVAILABLE_IOS(7_0),    // A default keyboard type with URL-oriented addition (shows space . prominently).
+//        UIKeyboardTypeASCIICapableNumberPad NS_ENUM_AVAILABLE_IOS(10_0), // A number pad (0-9) that will always be ASCII digits.
+//        
+//        UIKeyboardTypeAlphabet = UIKeyboardTypeASCIICapable, // Deprecated
+//        
+//    };
+
     
-    [attrStr addAttribute: NSFontAttributeName value: [UIFont fontWithName: @"Papyrus" size: 25] range: NSMakeRange(0, attrStr.length)];
+    textF.keyboardType = UIKeyboardTypeDecimalPad;
     
-    NSMutableParagraphStyle * style = [[NSMutableParagraphStyle alloc] init];
-    
-    style.lineSpacing = 15.0;
-    style.firstLineHeadIndent = 20.0;
-    
-    style.baseWritingDirection = NSWritingDirectionRightToLeft;
-    
-    [attrStr addAttribute: NSParagraphStyleAttributeName value: style range: NSMakeRange(0, attrStr.length)];
-    
-    self.firstLabel.attributedText = attrStr;
-    
+    [self.view addSubview:textF];
 }
+
 
 
 - (UILabel *)firstLabel

@@ -38,12 +38,12 @@
     FourViewController  *dd = [[FourViewController alloc] init];
     MainNavigationController* dNav = [[MainNavigationController alloc]initWithRootViewController:dd];
     
-//    FiveViewController  *ee = [[FiveViewController alloc] init];
-//    
-//    MainNavigationController* eNav = [[MainNavigationController alloc]initWithRootViewController:ee];
+    FiveViewController  *ee = [[FiveViewController alloc] init];
+    
+    MainNavigationController* eNav = [[MainNavigationController alloc]initWithRootViewController:ee];
     
     
-    self.viewControllers=[[NSArray alloc]initWithObjects:ayNav,bNav,cNav,dNav,nil];
+    self.viewControllers=[[NSArray alloc]initWithObjects:ayNav,bNav,cNav,dNav,eNav,nil];
     
     UITabBar *tabBar = self.tabBar;
     
@@ -51,34 +51,37 @@
     UITabBarItem *bTabBarItem = [tabBar.items objectAtIndex:1];
     UITabBarItem *cTabBarItem = [tabBar.items objectAtIndex:2];
     UITabBarItem *dTabBarItem = [tabBar.items objectAtIndex:3];
+    UITabBarItem *eTabBarItem = [tabBar.items objectAtIndex:4];
     
-    aa.title = @"资讯";
-    bb.title = @"好友";
-    cc.title = @"发现";
-    dd.title = @"我";
+    aa.title = @"首页";
+    bb.title = @"分区";
+    cc.title = @"关注";
+    dd.title = @"发现";
+    ee.title = @"我的";
     
-    aTabBarItem.title = @"资讯";
-    bTabBarItem.title = @"好友";
-    cTabBarItem.title = @"发现";
-    dTabBarItem.title = @"我";
+    aTabBarItem.title = @"首页";
+    bTabBarItem.title = @"分区";
+    cTabBarItem.title = @"关注";
+    dTabBarItem.title = @"发现";
+    eTabBarItem.title = @"我的";
+    
     
     //5.设置tabBar中items的图片
-    aTabBarItem.selectedImage = [UIImage imageNamed:@"tab_icon_news_press"];
-    
-    
-    aTabBarItem.image = [UIImage imageNamed:@"tab_icon_news_normal"];
+    aTabBarItem.selectedImage = [UIImage imageNamed:@"hd_home_home_tab_s"];
+    aTabBarItem.image = [UIImage imageNamed:@"hd_home_home_tab"];
     
     bTabBarItem.selectedImage = [UIImage imageNamed:@"tab_icon_friend_press"];
-    
     bTabBarItem.image = [UIImage imageNamed:@"tab_icon_friend_normal"];
     
-    cTabBarItem.selectedImage = [UIImage imageNamed:@"tab_icon_quiz_press"];
+    cTabBarItem.selectedImage = [UIImage imageNamed:@"hd_home_attention_tab_s"];
+    cTabBarItem.image = [UIImage imageNamed:@"hd_home_attention_tab"];
     
-    cTabBarItem.image = [UIImage imageNamed:@"tab_icon_quiz_normal"];
+    dTabBarItem.selectedImage = [UIImage imageNamed:@"hd_home_search_tab_s"];
+    dTabBarItem.image = [UIImage imageNamed:@"hd_home_search_tab"];
+
+    eTabBarItem.selectedImage = [UIImage imageNamed:@"hd_home_mine_tab_s"];
+    eTabBarItem.image = [UIImage imageNamed:@"hd_home_mine_tab"];
     
-    dTabBarItem.selectedImage = [UIImage imageNamed:@"tab_icon_more_press"];
-    
-    dTabBarItem.image = [UIImage imageNamed:@"tab_icon_more_normal"];
 
     
 }
